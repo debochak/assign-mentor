@@ -98,10 +98,17 @@ app.post("/assign", (req, res) => {
               "One of more students have already been assigned mentors. Please check the list of available students"
             );
         } else {
-          assign.push({
-            mentorname: req.body.mentorname,
-            student: req.body.student,
-          });
+          for (var i in assign) {
+            if (req.body.mentorname == assign[i].mentorname) {
+              assign[i].student.push(req.body.studentname);
+            }
+            else{
+              assign.push({
+                mentorname: req.body.mentorname,
+                student: req.body.student
+            })
+          }
+          };
           for (var i in req.body.student) {
             studenttemp = studenttemp.filter((item) => {
               return item != req.body.student[i];
