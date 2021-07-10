@@ -105,12 +105,14 @@ app.post("/assign", (req, res) => {
             }
             }
             if(a==1){
-              assign[i].student.push(req.body.studentname);
+              for(var n in req.body.student){
+                assign[i].student.push(req.body.student[n]);
+              }
             }
             else{
               assign.push({
                 mentorname: req.body.mentorname,
-                student: req.body.studentname
+                student: req.body.student
             })
           }
           ;
@@ -172,16 +174,23 @@ app.put("/studentmentor", (req, res) => {
           }
         }
       }
+
+      let a = 0;
       for (var i in assign) {
         if (req.body.mentorname == assign[i].mentorname) {
-          assign[i].student.push(req.body.studentname);
+          a=1;
+        }
+        }
+        if(a==1){
+          for(var n in req.body.studentname){
+            assign[i].student.push(req.body.studentname[n]);
+          }
         }
         else{
           assign.push({
             mentorname: req.body.mentorname,
             student: req.body.studentname
         })
-      }
       }
 
       for (var i in studentmentor){
