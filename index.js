@@ -110,7 +110,7 @@ app.post("/assign", (req, res) => {
             else{
               assign.push({
                 mentorname: req.body.mentorname,
-                student: req.body.student
+                student: req.body.studentname
             })
           }
           ;
@@ -179,7 +179,7 @@ app.put("/studentmentor", (req, res) => {
         else{
           assign.push({
             mentorname: req.body.mentorname,
-            student: req.body.student
+            student: req.body.studentname
         })
       }
       }
